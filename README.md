@@ -1,3 +1,4 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/craft-devs/craft-engine/badge)](https://www.codefactor.io/repository/github/craft-devs/craft-engine)
 # craft-engine
 Fork of the original [craft](https://github.com/code-dot-org/craft) by [Code.org](https://code.org).
 
