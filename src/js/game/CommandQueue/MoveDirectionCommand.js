@@ -12,4 +12,4 @@ class MoveDirectionCommand extends BaseCommand {
     super.begin();
     this.GameController.moveDirection(this, this.Direciton);
   }
-}
+};

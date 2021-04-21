@@ -174,4 +174,4 @@ class Cow extends BaseEntity {
         this.controller.levelView.playScaledSpeed(this.sprite.animations, animationName);
         this.controller.printErrorMsg(this.type + " calls animation : " + animationName + "\n");
     }
-}
+};

@@ -63,4 +63,4 @@ class Salmon extends BaseEntity {
     return true;
   }
 
-}
+};

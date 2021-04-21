@@ -24,4 +24,4 @@ class RepeatCommand extends BaseCommand {
       entity.queue.addRepeatCommands(this.actionCallback, this.iteration);
     }
   }
-}
+};

@@ -20,6 +20,9 @@ xml {
 
 #game {
   margin-right: 1em;
+}
+
+#game {
   width: 400px;
   padding: 1em;
   background-color: #777777;

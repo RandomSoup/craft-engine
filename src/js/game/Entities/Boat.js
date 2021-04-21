@@ -49,4 +49,4 @@ class Boat extends BaseEntity {
       true  // yoyo
     );
   }
-}
+};

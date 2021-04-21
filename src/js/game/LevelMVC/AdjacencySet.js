@@ -102,5 +102,5 @@ class AdjacencySet {
     }
     return true;
   }
-}
+};
 

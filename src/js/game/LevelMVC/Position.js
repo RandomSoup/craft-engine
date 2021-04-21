@@ -101,4 +101,4 @@ class Position {
   static fromArray(position) {
     return new Position(position[0], position[1]);
   }
-}
+};

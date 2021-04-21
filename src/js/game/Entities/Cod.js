@@ -63,4 +63,4 @@ class Cod extends BaseEntity {
     return true;
   }
 
-}
+};

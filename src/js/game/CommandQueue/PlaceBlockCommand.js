@@ -13,4 +13,4 @@ class PlaceBlockCommand extends BaseCommand {
     super.begin();
     this.GameController.placeBlock(this, this.BlockType);
   }
-}
+};

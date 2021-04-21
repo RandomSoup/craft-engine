@@ -69,4 +69,4 @@ class SeaTurtle extends BaseEntity {
     return true;
   }
 
-}
+};

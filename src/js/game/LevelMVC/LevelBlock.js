@@ -551,4 +551,4 @@ class LevelBlock {
 
     return frame;
   }
-}
+};

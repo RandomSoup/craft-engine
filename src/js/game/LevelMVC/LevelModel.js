@@ -1197,4 +1197,4 @@ class LevelModel {
       }
     }
   }
-}
+};

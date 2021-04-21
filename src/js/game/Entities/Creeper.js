@@ -113,4 +113,4 @@ class Creeper extends BaseEntity {
         this.sprite.x = this.offset[0] + 40 * this.position.x;
         this.sprite.y = this.offset[1] + 40 * this.position.y;
     }
-}
+};

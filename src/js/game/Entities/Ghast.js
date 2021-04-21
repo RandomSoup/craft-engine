@@ -139,4 +139,4 @@ class Ghast extends BaseEntity {
       x: (this.offset[0] + 40 * this.position.x - 10),
     }, randomInt(1500, 2000), ...options);
   }
-}
+};

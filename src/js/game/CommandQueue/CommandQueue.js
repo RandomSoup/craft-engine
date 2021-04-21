@@ -154,4 +154,4 @@ class CommandQueue {
     this.repeatCommands.push([codeBlock, iteration]);
     this.begin();
   }
-}
+};

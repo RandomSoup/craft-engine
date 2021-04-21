@@ -713,4 +713,4 @@ class BaseEntity {
     this.handleMoveOffPressurePlate(new Position(0, 0));
     this.controller.levelView.playTrack(this.position, direction, true, this, null);
   }
-}
+};

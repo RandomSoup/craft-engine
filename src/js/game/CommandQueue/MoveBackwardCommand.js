@@ -11,4 +11,4 @@ class MoveBackwardCommand extends BaseCommand {
     super.begin();
     this.GameController.moveBackward(this);
   }
-}
+};
