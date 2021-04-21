@@ -167,4 +167,4 @@ class Agent extends BaseEntity {
   canTriggerPressurePlates() {
     return true;
   }
-};
+}

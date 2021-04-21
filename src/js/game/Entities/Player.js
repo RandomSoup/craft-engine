@@ -255,4 +255,4 @@ class Player extends BaseEntity {
     return true;
   }
 
-};
+}

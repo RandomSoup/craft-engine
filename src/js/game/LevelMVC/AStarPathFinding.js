@@ -136,4 +136,4 @@ class AStarPathFinding {
     // No path could be found, return empty array.
     return [];
   }
-};
+}

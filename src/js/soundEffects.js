@@ -247,7 +247,7 @@ Sound.prototype.getPlayableFile = function () {
     if (this.config.hasOwnProperty('wav') && audioTest.canPlayType('audio/wav')) {
       return this.config.wav;
     }
-  } catch(e) {};
+  } catch(e) {/*continue regardless of error*/}
 
   return false;
 };

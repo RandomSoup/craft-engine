@@ -1020,4 +1020,4 @@ class AssetLoader {
         throw `Asset ${key} needs config.type set in configuration.`;
     }
   }
-};
+}

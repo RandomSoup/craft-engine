@@ -16,4 +16,4 @@ class TurnCommand extends BaseCommand {
     }
     this.GameController.turn(this, this.Direction);
   }
-};
+}

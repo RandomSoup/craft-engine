@@ -2692,4 +2692,4 @@ class LevelView {
     });
   }
 
-};
+}

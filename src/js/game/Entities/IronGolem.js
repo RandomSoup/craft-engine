@@ -108,4 +108,4 @@ class IronGolem extends BaseEntity {
         this.sprite.x = this.offset[0] + 40 * this.position[0];
         this.sprite.y = this.offset[1] + 40 * this.position[1];
     }
-};
+}

@@ -203,4 +203,4 @@ class Zombie extends BaseEntity {
             }, 1500 / this.controller.tweenTimeScale);
         }
     }
-};
+}
