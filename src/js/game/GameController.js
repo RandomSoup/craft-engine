@@ -259,7 +259,8 @@ class GameController {
       [Phaser.Keyboard.D]: FacingDirection.East,
       [Phaser.Keyboard.S]: FacingDirection.South,
       [Phaser.Keyboard.A]: FacingDirection.West,
-      [Phaser.Keyboard.SPACEBAR]: -2
+      [Phaser.Keyboard.SPACEBAR]: -2,
+      [Phaser.Keyboard.BACKSPACE]: -3
     };
 
     const editableElementSelected = function () {
@@ -891,6 +892,11 @@ class GameController {
     let frontBlock = this.levelModel.actionPlane.getBlockAt(frontPosition);
 
     const isFrontBlockDoor = frontBlock === undefined ? false : frontBlock.blockType === "door";
+    if (player.movementState == -3) {
+      //player.movementState = -1;
+      this.destroyBlock(commandQueueItem);
+      return;
+    }
     if (frontEntity !== null && frontEntity !== this.agent) {
       // push use command to execute general use behavior of the entity before executing the event
       this.levelView.setSelectionIndicatorPosition(frontPosition[0], frontPosition[1]);
@@ -934,13 +940,7 @@ class GameController {
       this.levelView.playTrack(frontPosition, player.facing, true, player, null);
       commandQueueItem.succeeded();
     } else {
-      this.levelView.playPunchDestroyAirAnimation(player.position, player.facing, this.levelModel.getMoveForwardPosition(), () => {
-        this.levelView.setSelectionIndicatorPosition(player.position[0], player.position[1]);
-        this.levelView.playIdleAnimation(player.position, player.facing, player.isOnBlock);
-        this.delayPlayerMoveBy(0, 0, () => {
-          commandQueueItem.succeeded();
-        });
-      });
+      this.placeBlockForward(commandQueueItem, player.selectedItem);
     }
   }
 

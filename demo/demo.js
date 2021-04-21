@@ -1,5 +1,4 @@
 var previous = false;
-var playing = false;
 
 var levelselect = document.getElementById('level-load');
 var speedslider = document.getElementById('speed-slider');
@@ -11,6 +10,7 @@ var body = document.body;
 var playbutton = document.getElementById('play-button');
 var consolepre = document.getElementById('console-pre');
 var consoleerrors = document.getElementById('console-errors');
+var blocktype = document.getElementById('block-type');
 
 var defaults = {
   assetPacks: {
@@ -92,7 +92,6 @@ document.addEventListener('input', function (event) {
 document.getElementById('stop-button').addEventListener('click', function () {
   api.resetAttempt();
   previous = false;
-  playing = false;
 });
 
 playbutton.addEventListener('click', function () {
@@ -100,11 +99,11 @@ playbutton.addEventListener('click', function () {
     api.resetAttempt();
   }
   previous = true;
-  playing = true;
   playbutton.blur();
   phasergame.focus();
   gameController.game.canvas.id = 'game-canvas';
-  try {
+  gameController.player.selectedItem = blocktype.options[blocktype.selectedIndex].text;
+  try {this.selectedItem
     new Function('api', `'use strict'; ${codemirror.getValue()}`)(api);
   } catch (err) {
     consoleerrors.innerText += '[ERR] ' + err + '\n';
@@ -113,30 +112,6 @@ playbutton.addEventListener('click', function () {
   api.startAttempt();
 });
 
-document.addEventListener('click', function (event) {
-  if (event.target.id != gameController.game.canvas.id) {
-    playing = false;
-  }
+blocktype.addEventListener('change', function () {
+  gameController.player.selectedItem = blocktype.options[blocktype.selectedIndex].text;
 });
-
-document.addEventListener('keydown', function (event) {
-  if (!playing) {
-    return;
-  }
-
-  var target = 'Player';
-  var instance = target === 'Player' ? gameController.player : gameController.agent;
-
-  if (instance.queue.getLength() > 0) {
-    return;
-  }
-
-  switch (event.key) {
-    case "Backspace":
-      api.destroyBlock(null, target);
-      break;
-    case " ":
-      api.placeInFront(null, document.getElementById('block-type').value, target);
-      break;
-  }
-}, false);

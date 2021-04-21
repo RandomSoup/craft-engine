@@ -8,6 +8,7 @@ class Player extends BaseEntity {
     this.movementState = -1;
     this.onTracks = false;
     this.getOffTrack = false;
+    this.selectedItem = null;
 
     if (controller.getIsDirectPlayerControl()) {
       this.moveDelayMin = 0;
@@ -85,16 +86,14 @@ class Player extends BaseEntity {
     }
 
     if (this.canUpdateMovement()) {
-      // Arrow key
-      if (this.movementState >= 0) {
+      if (this.movementState >= 0) { // WASD
         let direction = this.movementState;
         let callbackCommand = new CallbackCommand(this, () => { }, () => {
           this.lastMovement = +new Date();
           this.controller.moveDirection(callbackCommand, direction);
         }, this.identifier);
         this.addCommand(callbackCommand);
-        // Spacebar
-      } else {
+      } else { // Spacebar/Backspace
         let callbackCommand = new CallbackCommand(this, () => { }, () => {
           this.lastMovement = +new Date();
           this.controller.use(callbackCommand);
