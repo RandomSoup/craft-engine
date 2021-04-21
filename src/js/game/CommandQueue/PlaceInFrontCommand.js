@@ -13,4 +13,4 @@ class PlaceInFrontCommand extends BaseCommand {
     super.begin();
     this.GameController.placeBlockForward(this, this.BlockType);
   }
-};
+}

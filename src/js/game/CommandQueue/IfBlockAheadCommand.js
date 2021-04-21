@@ -45,4 +45,4 @@ class IfBlockAheadCommand extends BaseCommand {
       this.state = CommandState.SUCCESS;
     }
   }
-};
+}
