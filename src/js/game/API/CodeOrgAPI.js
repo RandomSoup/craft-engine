@@ -27,6 +27,7 @@ function getCodeOrgAPI(controller) {
           onAttemptComplete && onAttemptComplete(...args);
           resolve(args[0]);
         };
+        controller.initiateDayNightCycle(controller.dayNightCycle, controller.dayNightCycle, "day");
         controller.setPlayerActionDelayByQueueLength();
         controller.queue.begin();
         controller.run();
@@ -58,12 +59,7 @@ function getCodeOrgAPI(controller) {
      *  }
      */
     registerEventCallback(highlightCallback, codeBlockCallback) {
-      // TODO(bjordan): maybe need to also handle top-level event block highlighting
       controller.events.push(codeBlockCallback);
-
-      // in controller:
-      // this.events.forEach((e) => e({ type: EventType.BLOCK_DESTROYED, blockType: 'logOak' });
-      // (and clear out on reset)
     },
 
     onEventTriggered: function (highlightCallback, type, eventType, callback) {
@@ -184,10 +180,12 @@ function getCodeOrgAPI(controller) {
     ifBlockAhead: function (highlightCallback, blockType, targetEntity, codeBlock) {
       controller.addCommand(new IfBlockAheadCommand(controller, highlightCallback, blockType, targetEntity, codeBlock), targetEntity);
     },
+
     // -1 for infinite repeat
     repeat: function (highlightCallback, codeBlock, iteration, targetEntity) {
       controller.addCommand(new RepeatCommand(controller, highlightCallback, codeBlock, iteration, targetEntity));
     },
+
     // -1 for infinite repeat
     repeatRandom: function (highlightCallback, codeBlock, targetEntity) {
       var maxIteration = 10;

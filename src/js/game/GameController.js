@@ -76,7 +76,7 @@ class GameController {
     this.tweenTimeScale = 1.5 / this.initialSlowMotion;
 
     this.playerDelayFactor = 1.0;
-    this.dayNightCycle = false;
+    this.dayNightCycle = null;
     this.player = null;
     this.agent = null;
 
@@ -123,6 +123,7 @@ class GameController {
     this.levelModel = new LevelModel(this.levelData, this);
     this.levelView = new LevelView(this);
     this.specialLevelType = levelConfig.specialLevelType;
+    this.dayNightCycle = Number.parseInt(levelConfig.dayNightCycle);
     this.timeout = levelConfig.levelVerificationTimeout;
     if (levelConfig.useScore !== undefined) {
       this.useScore = levelConfig.useScore;
@@ -131,11 +132,14 @@ class GameController {
     this.onDayCallback = levelConfig.onDayCallback;
     this.onNightCallback = levelConfig.onNightCallback;
 
+    if (!Number.isNaN(this.dayNightCycle) && this.dayNightCycle > 1000) {
+      this.setDayNightCycle(this.dayNightCycle, "day");
+    }
     this.game.state.start('levelRunner');
   }
 
   reset() {
-    this.dayNightCycle = false;
+    this.dayNightCycle = null;
     this.queue.reset();
     this.levelEntity.reset();
     this.levelModel.reset();
@@ -1422,21 +1426,21 @@ class GameController {
     }
   }
 
-  initiateDayNightCycle(firstDelay, delayInSecond, startTime) {
+  initiateDayNightCycle(firstDelay, delayInMs, startTime) {
     if (startTime === "day" || startTime === "Day") {
       this.timeouts.push(setTimeout(() => {
         this.startDay(null);
-        this.setDayNightCycle(delayInSecond, "night");
-      }, firstDelay * 1000));
+        this.setDayNightCycle(delayInMs, "night");
+      }, firstDelay));
     } else if (startTime === "night" || startTime === "Night") {
       this.timeouts.push(setTimeout(() => {
         this.startNight(null);
-        this.setDayNightCycle(delayInSecond, "day");
-      }, firstDelay * 1000));
+        this.setDayNightCycle(delayInMs, "day");
+      }, firstDelay));
     }
   }
 
-  setDayNightCycle(delayInSecond, startTime) {
+  setDayNightCycle(delayInMs, startTime) {
     if (!this.dayNightCycle) {
       return;
     }
@@ -1446,16 +1450,16 @@ class GameController {
           return;
         }
         this.startDay(null);
-        this.setDayNightCycle(delayInSecond, "night");
-      }, delayInSecond * 1000));
+        this.setDayNightCycle(delayInMs, "night");
+      }, delayInMs));
     } else if (startTime === "night" || startTime === "Night") {
       this.timeouts.push(setTimeout(() => {
         if (!this.dayNightCycle) {
           return;
         }
         this.startNight(null);
-        this.setDayNightCycle(delayInSecond, "day");
-      }, delayInSecond * 1000));
+        this.setDayNightCycle(delayInMs, "day");
+      }, delayInMs));
     }
   }
 
