@@ -63,4 +63,4 @@ class TropicalFish extends BaseEntity {
     return true;
   }
 
-};
+}

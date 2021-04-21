@@ -832,4 +832,4 @@ class LevelPlane {
     return 8 * ringSize;
   }
 
-};
+}
