@@ -357,4 +357,4 @@ class Sheep extends BaseEntity {
     getNakedSuffix() {
         return this.naked ? "naked_" : "";
     }
-};
+}

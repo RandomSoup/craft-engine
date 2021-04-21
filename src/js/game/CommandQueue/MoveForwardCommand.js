@@ -11,4 +11,4 @@ class MoveForwardCommand extends BaseCommand {
     super.begin();
     this.GameController.moveForward(this);
   }
-};
+}

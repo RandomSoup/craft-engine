@@ -60,4 +60,4 @@ class Squid extends BaseEntity {
     return true;
   }
 
-};
+}

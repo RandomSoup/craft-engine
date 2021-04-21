@@ -14,4 +14,4 @@ class PlaceDirectionCommand extends BaseCommand {
     super.begin();
     this.GameController.placeBlockDirection(this, this.BlockType, this.Direction);
   }
-};
+}

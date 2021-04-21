@@ -12,4 +12,4 @@ class DestroyBlockCommand extends BaseCommand {
     super.begin();
     this.GameController.destroyBlock(this);
   }
-};
+}

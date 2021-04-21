@@ -305,4 +305,4 @@ class LevelEntity {
     this.entityMap.clear();
     this.entityDeathCount = new Map();
   }
-};
+}

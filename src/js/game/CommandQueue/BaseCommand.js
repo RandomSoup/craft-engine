@@ -59,4 +59,4 @@ class BaseCommand {
   failed() {
     this.state = CommandState.FAILURE;
   }
-};
+}

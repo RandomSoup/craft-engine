@@ -12,4 +12,4 @@ class CallbackCommand extends BaseCommand {
     super.begin();
     this.actionCallback();
   }
-};
+}

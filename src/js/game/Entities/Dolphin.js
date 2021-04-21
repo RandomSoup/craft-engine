@@ -63,4 +63,4 @@ class Dolphin extends BaseEntity {
     return true;
   }
 
-};
+}
