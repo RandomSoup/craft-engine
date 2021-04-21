@@ -2216,13 +2216,7 @@ class LevelView {
   createBlock(group, x, y, blockType) {
     const position = new Position(x, y);
 
-    var i,
-      sprite = null,
-      frameList,
-      atlas,
-      frame,
-      xOffset,
-      yOffset;
+    let i, sprite = null, frameList, atlas, frame, xOffset, yOffset;
 
 
     var buildTree = function (levelView, frame) {
