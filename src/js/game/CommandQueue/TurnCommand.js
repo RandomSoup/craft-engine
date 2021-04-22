@@ -1,19 +1,19 @@
 class TurnCommand extends BaseCommand {
-  constructor(gameController, highlightCallback, direction, targetEntity) {
-    super(gameController, highlightCallback, targetEntity);
+	constructor(gameController, highlightCallback, direction, targetEntity) {
+		super(gameController, highlightCallback, targetEntity);
 
-    this.Direction = direction;
-  }
+		this.Direction = direction;
+	}
 
-  tick() {
-    // do stuff??
-  }
+	tick() {
+		// do stuff??
+	}
 
-  begin() {
-    super.begin();
-    if (this.GameController.DEBUG) {
-      console.log(`TURN command: BEGIN turning ${this.Direction}  `);
-    }
-    this.GameController.turn(this, this.Direction);
-  }
-};
+	begin() {
+		super.begin();
+		if (this.GameController.DEBUG) {
+			console.log(`TURN command: BEGIN turning ${this.Direction}  `);
+		}
+		this.GameController.turn(this, this.Direction);
+	}
+}

@@ -2,10 +2,10 @@
   "name": "@craft-devs/craft-engine",
   "version": "0.1.0",
   "description": "Fork of Code.org's craft.",
-  "main": "index.js",
   "scripts": {
     "build-dev": "./build.js dev",
     "build-prod": "./build.js prod",
+    "lint": "npx eslint --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/craft-devs/craft-engine#readme",
   "devDependencies": {
+    "eslint": "^7.24.0",
     "express": "^4.17.1",
     "fs-extra": "^9.1.0",
     "uglify-js": "^3.13.4"

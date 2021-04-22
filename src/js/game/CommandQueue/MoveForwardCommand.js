@@ -1,14 +1,14 @@
 class MoveForwardCommand extends BaseCommand {
-  constructor(gameController, highlightCallback, targetEntity, onFinish) {
-    super(gameController, highlightCallback, targetEntity, onFinish);
-  }
+	constructor(gameController, highlightCallback, targetEntity, onFinish) {
+		super(gameController, highlightCallback, targetEntity, onFinish);
+	}
 
-  tick() {
-    // do stuff
-  }
+	tick() {
+		// do stuff
+	}
 
-  begin() {
-    super.begin();
-    this.GameController.moveForward(this);
-  }
-};
+	begin() {
+		super.begin();
+		this.GameController.moveForward(this);
+	}
+}

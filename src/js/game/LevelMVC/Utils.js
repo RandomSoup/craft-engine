@@ -7,42 +7,42 @@
  * @param levelConfig
  */
 convertActionPlaneEntitiesToConfig = function (levelConfig) {
-  const [width, height] = levelConfig.gridWidth && levelConfig.gridHeight ?
-    [levelConfig.gridWidth, levelConfig.gridHeight] : [10, 10];
+	const [width, height] = levelConfig.gridWidth && levelConfig.gridHeight ?
+		[levelConfig.gridWidth, levelConfig.gridHeight] : [10, 10];
 
-  var planesToCustomize = [levelConfig.actionPlane];
-  planesToCustomize.forEach(function (plane) {
-    for (let i = 0; i < plane.length; i++) {
-      const x = i % width;
-      const y = Math.floor(i / height);
-      const entity = convertNameToEntity(plane[i], x, y);
+	var planesToCustomize = [levelConfig.actionPlane];
+	planesToCustomize.forEach(function (plane) {
+		for (let i = 0; i < plane.length; i++) {
+			const x = i % width;
+			const y = Math.floor(i / height);
+			const entity = convertNameToEntity(plane[i], x, y);
 
-      if (entity) {
-        levelConfig.entities = levelConfig.entities || [];
-        levelConfig.entities.push(entity);
-        plane[i] = '';
-      }
-    }
-  });
+			if (entity) {
+				levelConfig.entities = levelConfig.entities || [];
+				levelConfig.entities.push(entity);
+				plane[i] = "";
+			}
+		}
+	});
 };
 
 randomInt = function (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+	return Math.floor(Math.random() * (max - min)) + min;
 };
 
 const suffixToDirection = {
-  Up: FacingDirection.North,
-  Down: FacingDirection.South,
-  Left: FacingDirection.West,
-  Right: FacingDirection.East,
+	Up: FacingDirection.North,
+	Down: FacingDirection.South,
+	Left: FacingDirection.West,
+	Right: FacingDirection.East,
 };
 
 convertNameToEntity = function (item, x, y) {
-  if (item.match(/^(sheep|zombie|ironGolem|creeper|cod|cow|chicken|dolphin|ghast|boat|salmon|squid|tropicalFish|seaTurtle)(Right|Left|Up|Down|$)/)) {
-    const directionMatch = item.match(/(.*)(Right|Left|Up|Down)/);
-    const directionToUse = directionMatch ?
-      suffixToDirection[directionMatch[2]] : FacingDirection.East;
-    const entityToUse = directionMatch ? directionMatch[1] : item;
-    return [entityToUse, x, y, directionToUse];
-  }
+	if (item.match(/^(sheep|zombie|ironGolem|creeper|cod|cow|chicken|dolphin|ghast|boat|salmon|squid|tropicalFish|seaTurtle)(Right|Left|Up|Down|$)/)) {
+		const directionMatch = item.match(/(.*)(Right|Left|Up|Down)/);
+		const directionToUse = directionMatch ?
+			suffixToDirection[directionMatch[2]] : FacingDirection.East;
+		const entityToUse = directionMatch ? directionMatch[1] : item;
+		return [entityToUse, x, y, directionToUse];
+	}
 };

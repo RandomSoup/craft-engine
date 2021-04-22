@@ -1,15 +1,15 @@
 class CallbackCommand extends BaseCommand {
-  constructor(gameController, highlightCallback, actionCallback, targetEntity, onFinish) {
-    super(gameController, highlightCallback, targetEntity, onFinish);
-    this.actionCallback = actionCallback;
-  }
+	constructor(gameController, highlightCallback, actionCallback, targetEntity, onFinish) {
+		super(gameController, highlightCallback, targetEntity, onFinish);
+		this.actionCallback = actionCallback;
+	}
 
-  tick() {
-    // do stuff
-  }
+	tick() {
+		// do stuff
+	}
 
-  begin() {
-    super.begin();
-    this.actionCallback();
-  }
-};
+	begin() {
+		super.begin();
+		this.actionCallback();
+	}
+}

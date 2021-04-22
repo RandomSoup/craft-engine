@@ -1,15 +1,15 @@
 class DestroyBlockCommand extends BaseCommand {
-  constructor(gameController, highlightCallback, targetEntity) {
+	constructor(gameController, highlightCallback, targetEntity) {
 
-    super(gameController, highlightCallback, targetEntity);
-  }
+		super(gameController, highlightCallback, targetEntity);
+	}
 
-  tick() {
-    // do stuff
-  }
+	tick() {
+		// do stuff
+	}
 
-  begin() {
-    super.begin();
-    this.GameController.destroyBlock(this);
-  }
-};
+	begin() {
+		super.begin();
+		this.GameController.destroyBlock(this);
+	}
+}

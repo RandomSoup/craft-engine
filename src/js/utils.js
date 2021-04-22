@@ -11,18 +11,18 @@
  * @param {boolean} [cancelable=false]
  */
 createEvent = function createEvent(type, bubbles = false, cancelable = false) {
-  var customEvent;
-  try {
-    customEvent = new Event(type, { bubbles, cancelable });
-  } catch (e) {
-    customEvent = document.createEvent('Event');
-    customEvent.initEvent(type, bubbles, cancelable);
-  }
-  return customEvent;
+	var customEvent;
+	try {
+		customEvent = new Event(type, { bubbles, cancelable });
+	} catch (e) {
+		customEvent = document.createEvent("Event");
+		customEvent.initEvent(type, bubbles, cancelable);
+	}
+	return customEvent;
 };
 
 bisect = function bisect(array, conditional) {
-  const positive = array.filter(x => conditional(x));
-  const negative = array.filter(x => !conditional(x));
-  return [positive, negative];
+	const positive = array.filter(x => conditional(x));
+	const negative = array.filter(x => !conditional(x));
+	return [positive, negative];
 };

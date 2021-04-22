@@ -1,15 +1,15 @@
 class MoveDirectionCommand extends BaseCommand {
-  constructor(gameController, highlightCallback, targetEntity, direction) {
-    super(gameController, highlightCallback, targetEntity);
-    this.Direciton = direction;
-  }
+	constructor(gameController, highlightCallback, targetEntity, direction) {
+		super(gameController, highlightCallback, targetEntity);
+		this.Direciton = direction;
+	}
 
-  tick() {
-    // do stuff
-  }
+	tick() {
+		// do stuff
+	}
 
-  begin() {
-    super.begin();
-    this.GameController.moveDirection(this, this.Direciton);
-  }
-};
+	begin() {
+		super.begin();
+		this.GameController.moveDirection(this, this.Direciton);
+	}
+}
