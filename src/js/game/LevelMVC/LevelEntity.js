@@ -13,7 +13,7 @@ class LevelEntity {
 
   loadData(levelData) {
     if (levelData.entities !== undefined) {
-      for (var i = 0; i < levelData.entities.length; i++) {
+      for (let i = 0; i < levelData.entities.length; i++) {
         let data = levelData.entities[i];
         let entity = this.createEntity(data[0], this.id++, data[1], data[2], data[3], data[4]);
         entity.updateHidingTree();
@@ -41,7 +41,7 @@ class LevelEntity {
     const friendlyEntityList = ['sheep', 'ironGolem', 'cow', 'chicken','cod',
     'dolphin','salmon','seaTurtle','seaTurtle',
     'squid','tropicalFish'];
-    for (var i = 0; i < friendlyEntityList.length; i++) {
+    for (let i = 0; i < friendlyEntityList.length; i++) {
       if (type === friendlyEntityList[i]) {
         return true;
       }
@@ -110,8 +110,8 @@ class LevelEntity {
   }
 
   isSpawnableInBetween(minX, minY, maxX, maxY) {
-    for (var i = minX; i <= maxX; i++) {
-      for (var j = minY; j <= maxY; j++) {
+    for (let i = minX; i <= maxX; i++) {
+      for (let j = minY; j <= maxY; j++) {
         if (this.controller.levelModel.isPositionEmpty(new Position(i, j))[0]) {
           return true;
         }
@@ -270,7 +270,7 @@ class LevelEntity {
   }
 
   getEntityAt(position) {
-    for (var value of this.entityMap) {
+    for (let value of this.entityMap) {
       let entity = value[1];
       if (Position.equals(position, entity.position)) {
         return entity;

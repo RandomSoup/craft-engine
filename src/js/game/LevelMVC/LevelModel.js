@@ -190,7 +190,7 @@ class LevelModel {
   isEntityOnBlocktype(entityType, blockType, count = 1) {
     var entityList = this.controller.levelEntity.getEntitiesOfType(entityType);
     var resultCount = 0;
-    for (var i = 0; i < entityList.length; i++) {
+    for (let i = 0; i < entityList.length; i++) {
       var entity = entityList[i];
       if (this.isBlockOfType(entity.position, blockType) || this.groundPlane.getBlockAt(entity.position).blockType === blockType) {
         resultCount++;
@@ -211,7 +211,7 @@ class LevelModel {
     }
 
     var entityList = this.controller.levelEntity.getEntitiesOfType(entityType);
-    for (var i = 0; i < entityList.length; i++) {
+    for (let i = 0; i < entityList.length; i++) {
       var entity = entityList[i];
       if (Position.equals(entity.position, position)) {
         return true;
@@ -222,7 +222,7 @@ class LevelModel {
 
   isEntityTypeRunning(entityType) {
     var entityList = this.controller.levelEntity.getEntitiesOfType(entityType);
-    for (var i = 0; i < entityList.length; i++) {
+    for (let i = 0; i < entityList.length; i++) {
       var entity = entityList[i];
       const notStarted = !entity.queue.isStarted();
       const notFinished = !entity.queue.isFinished();
@@ -293,7 +293,7 @@ class LevelModel {
     if (inventoryType === "all" || inventoryType === "All") {
       var inventory = this.player.inventory;
       var count = 0;
-      for (var key in inventory) {
+      for (let key in inventory) {
         count += inventory[key];
       }
       return count;
@@ -338,7 +338,7 @@ class LevelModel {
   }
 
   solutionMapMatchesResultMap(solutionMap) {
-    for (var i = 0; i < this.planeArea(); i++) {
+    for (let i = 0; i < this.planeArea(); i++) {
       var solutionItemType = solutionMap[i];
       let position = this.actionPlane.indexToCoordinates(i);
 
@@ -481,7 +481,7 @@ class LevelModel {
     posRight[0] = this.yToIndex(posRight[2]) + posRight[1];
 
     checkActionBlock = this.actionPlane.getBlockAt(this.actionPlane.indexToCoordinates(index));
-    for (var i = 0; i < array.length; ++i) {
+    for (let i = 0; i < array.length; ++i) {
       if (array[i][0] === index) {
         checkIndex = -1;
         break;
@@ -515,7 +515,7 @@ class LevelModel {
   }
 
   getEntityAt(position) {
-    for (var entity of this.controller.levelEntity.entityMap) {
+    for (let entity of this.controller.levelEntity.entityMap) {
       if (Position.equals(entity[1].position, position)) {
         return entity[1];
       }
@@ -525,7 +525,7 @@ class LevelModel {
 
   getAllBorderingPositionNotOfType(position, blockType) {
     var surroundingBlocks = this.getAllBorderingPosition(position, null);
-    for (var b = 1; b < surroundingBlocks.length; ++b) {
+    for (let b = 1; b < surroundingBlocks.length; ++b) {
       if (surroundingBlocks[b][0] && this.actionPlane.getBlockAt(surroundingBlocks[b][1]).blockType === blockType) {
         surroundingBlocks[b][0] = false;
       }
@@ -802,7 +802,7 @@ class LevelModel {
     emissives = this.getAllEmissives();
     blocksToSolve = this.findBlocksAffectedByEmissives(emissives);
 
-    for (var block in blocksToSolve) {
+    for (let block in blocksToSolve) {
       if (blocksToSolve.hasOwnProperty(block)) {
         this.solveFOWTypeFor(blocksToSolve[block], emissives);
       }
@@ -826,7 +826,7 @@ class LevelModel {
 
     emissivesTouching = this.findEmissivesThatTouch(position, emissives);
 
-    for (var torch in emissivesTouching) {
+    for (let torch in emissivesTouching) {
       var currentTorch = emissivesTouching[torch];
       y = position[1];
       x = position[0];
@@ -933,8 +933,8 @@ class LevelModel {
    */
   getAllEmissives() {
     var emissives = [];
-    for (var y = 0; y < this.planeHeight; ++y) {
-      for (var x = 0; x < this.planeWidth; ++x) {
+    for (let y = 0; y < this.planeHeight; ++y) {
+      for (let x = 0; x < this.planeWidth; ++x) {
         let position = new Position(x, y);
         if (
           (!this.actionPlane.getBlockAt(position).isEmpty &&
@@ -957,12 +957,12 @@ class LevelModel {
   findBlocksAffectedByEmissives(emissives) {
     var blocksTouchedByEmissives = {};
     //find emissives that are close enough to light us.
-    for (var torch in emissives) {
+    for (let torch in emissives) {
       var currentTorch = emissives[torch];
       let x = currentTorch.x;
       let y = currentTorch.y;
-      for (var yIndex = currentTorch.y - 2; yIndex <= (y + 2); ++yIndex) {
-        for (var xIndex = currentTorch.x - 2; xIndex <= (x + 2); ++xIndex) {
+      for (let yIndex = currentTorch.y - 2; yIndex <= (y + 2); ++yIndex) {
+        for (let xIndex = currentTorch.x - 2; xIndex <= (x + 2); ++xIndex) {
 
           let position = new Position(xIndex, yIndex);
 
@@ -992,8 +992,8 @@ class LevelModel {
     let x = position.x;
 
     //find emissives that are close enough to light us.
-    for (var yIndex = y - 2; yIndex <= (y + 2); ++yIndex) {
-      for (var xIndex = x - 2; xIndex <= (x + 2); ++xIndex) {
+    for (let yIndex = y - 2; yIndex <= (y + 2); ++yIndex) {
+      for (let xIndex = x - 2; xIndex <= (x + 2); ++xIndex) {
 
         let touchingPosition = new Position(xIndex, yIndex);
 
@@ -1007,7 +1007,7 @@ class LevelModel {
           continue;
         }
 
-        for (var torch in emissives) {
+        for (let torch in emissives) {
           if (Position.equals(emissives[torch], touchingPosition)) {
             emissivesThatTouch.push(emissives[torch]);
           }
@@ -1068,8 +1068,8 @@ class LevelModel {
   }
 
   clearFow() {
-    for (var x = 0; x < this.planeWidth; x++) {
-      for (var y = 0; y < this.planeHeight; y++) {
+    for (let x = 0; x < this.planeWidth; x++) {
+      for (let y = 0; y < this.planeHeight; y++) {
         let blockIndex = this.yToIndex(y) + x;
         this.fowPlane[blockIndex] = "";
       }

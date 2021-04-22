@@ -781,7 +781,7 @@ class LevelView {
     }
 
     this.audioPlayer.play("fuse");
-    for (var tnt in tntArray) {
+    for (let tnt in tntArray) {
       block = this.actionPlaneBlocks[this.coordinatesToIndex(tntArray[tnt])];
       lastAnimation = this.playScaledSpeed(block.animations, "explode");
     }
@@ -842,7 +842,7 @@ class LevelView {
     fadeIn.chain(fadeOut);
     var lastStep = fadeOut;
 
-    for (var i = 0; i < totalIterations - 1; i++) {
+    for (let i = 0; i < totalIterations - 1; i++) {
       var innerPause = this.game.add.tween(flashSprite).to(aOut, pauseMs, Phaser.Easing.Linear.None);
       var innerFadeIn = this.game.add.tween(flashSprite).to(aIn, fadeMs, Phaser.Easing.Linear.None);
       var innerFadeOut = this.game.add.tween(flashSprite).to(aOut, fadeMs, Phaser.Easing.Linear.None);
@@ -1022,7 +1022,7 @@ class LevelView {
       var yCoord;
       var sprite;
 
-      for (var i = 0; i < createFloor.length; ++i) {
+      for (let i = 0; i < createFloor.length; ++i) {
         xCoord = createFloor[i][1];
         yCoord = createFloor[i][2];
         /*this.groundGroup._data[this.coordinatesToIndex([xCoord,yCoord])].kill();*/
@@ -1752,8 +1752,8 @@ class LevelView {
 
   refreshGroundGroup() {
     this.groundGroup.removeAll(true);
-    for (var y = 0; y < this.controller.levelModel.planeHeight; ++y) {
-      for (var x = 0; x < this.controller.levelModel.planeWidth; ++x) {
+    for (let y = 0; y < this.controller.levelModel.planeHeight; ++y) {
+      for (let x = 0; x < this.controller.levelModel.planeWidth; ++x) {
         let position = new Position(x, y);
         const groundBlock = this.controller.levelModel.groundPlane.getBlockAt(position);
         var sprite = this.createBlock(this.groundGroup, x, y, groundBlock.blockType);
@@ -1931,7 +1931,7 @@ class LevelView {
 
   generateFramesWithEndDelay(frameName, startFrame, endFrame, endFrameFullName, buffer, frameDelay) {
     var frameList = Phaser.Animation.generateFrameNames(frameName, startFrame, endFrame, "", buffer);
-    for (var i = 0; i < frameDelay; ++i) {
+    for (let i = 0; i < frameDelay; ++i) {
       frameList.push(endFrameFullName);
     }
     return frameList;
@@ -2628,7 +2628,7 @@ class LevelView {
       return false;
     }
     var fluffPositions = this.treeFluffTypes[this.trees[treeIndex].type];
-    for (var i = 0; i < fluffPositions.length; i++) {
+    for (let i = 0; i < fluffPositions.length; i++) {
       if (this.trees[treeIndex].position[0] + fluffPositions[i][0] === position[0] && this.trees[treeIndex].position[1] + fluffPositions[i][1] === position[1]) {
         return true;
       }

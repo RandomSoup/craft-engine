@@ -47,8 +47,8 @@ class LevelBlock {
     }
 
     if (blockType.substring(0, 5) === "rails") {
-      this.isWeaklyPowerable = blockType === 'railsRedstoneTorch' ? true : false;
-      this.isStickable = blockType === 'railsRedstoneTorch' ? false : true;
+      this.isWeaklyPowerable = blockType === 'railsRedstoneTorch';
+      this.isStickable = blockType !== 'railsRedstoneTorch';
       this.isEntity = true;
       this.isWalkable = true;
       this.isUsable = true;
@@ -170,13 +170,13 @@ class LevelBlock {
     }
 
     if (blockType.startsWith("pressurePlate")) {
-      this.isWeaklyPowerable = blockType === 'pressurePlateUp' ? false : true;
+      this.isWeaklyPowerable = blockType !== 'pressurePlateUp';
       this.isEntity = true;
       this.isWalkable = true;
       this.isDestroyable = false;
       this.isTransparent = true;
       this.isConnectedToRedstone = true;
-      this.isRedstoneBattery = blockType === 'pressurePlateUp' ? false : true;
+      this.isRedstoneBattery = blockType !== 'pressurePlateUp';
       this.isStickable = false;
     }
 
@@ -362,11 +362,7 @@ class LevelBlock {
   }
 
   needToRefreshRedstone(){
-    if (this.isRedstone || this.blockType === '' || (this.isConnectedToRedstone && !this.blockType.startsWith("piston"))) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.isRedstone || this.blockType === '' || (this.isConnectedToRedstone && !this.blockType.startsWith("piston"));
   }
 
   getPistonDirection() {
