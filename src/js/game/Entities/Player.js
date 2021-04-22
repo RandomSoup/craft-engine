@@ -218,7 +218,7 @@ class Player extends BaseEntity {
   collectItems(targetPosition = this.position) {
     // collectible check
     var collectibles = this.controller.levelView.collectibleItems;
-    for (var i = 0; i < collectibles.length; i++) {
+    for (let i = 0; i < collectibles.length; i++) {
       const [sprite, offset, blockType, collectibleDistance] = collectibles[i];
       // already collected item
       if (sprite === null) {

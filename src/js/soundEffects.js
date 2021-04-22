@@ -70,7 +70,7 @@ function Sounds() {
  */
 Sounds.prototype.registerByFilenamesAndID = function (soundPaths, soundID) {
   var soundRegistrationConfig = { id: soundID };
-  for (var i = 0; i < soundPaths.length; i++) {
+  for (let i = 0; i < soundPaths.length; i++) {
     var soundFilePath = soundPaths[i];
     var getExtensionRegexp = /\.(\w+)(\?.*)?$/;
     var extensionCaptureGroups = soundFilePath.match(getExtensionRegexp);

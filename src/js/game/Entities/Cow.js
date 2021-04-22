@@ -22,12 +22,12 @@ class Cow extends BaseEntity {
         [[147, 153], [114, 116], [129, 130], [174, 176], [129, 130], [180, 191], [192, 202], [203, 215], [216, 221], [452, 459], [165, 171], [129, 138]], // right
         [[36, 42], [3, 5], [12, 14], [63, 65], [18, 19], [69, 80], [81, 91], [92, 104], [105, 110], [444, 451], [51, 54], [18, 27]], // up
         [[369, 375], [336, 338], [335, 337], [396, 398], [351, 352], [402, 413], [414, 424], [425, 437], [438, 443], [468, 475], [387, 393], [351, 360]]]; // left
-        for (var i = 0; i < 4; i++) {
+        for (let i = 0; i < 4; i++) {
             var facingName = this.controller.levelView.getDirectionName(i);
 
             // idle sequence
             frameList = [];
-            for (var j = 0; j < idleDelayFrame; j++) {
+            for (let j = 0; j < idleDelayFrame; j++) {
                 frameList.push(stillFrameName[i]);
             }
             this.sprite.animations.add("idle" + facingName, frameList, frameRate, false).onComplete.add(() => {

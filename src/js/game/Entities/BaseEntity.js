@@ -118,7 +118,7 @@ class BaseEntity {
         // this is not under tree
         if (!this.underTree.state) {
             var treeList = levelView.trees;
-            for (var i = 0; i < treeList.length; i++) {
+            for (let i = 0; i < treeList.length; i++) {
                 if (levelView.isUnderTree(i, this.position)) {
                     levelView.changeTreeAlpha(i, 0.8);
                     this.underTree = { state: true, treeIndex: i };
@@ -130,7 +130,7 @@ class BaseEntity {
             var currentTreeIndex = this.underTree.treeIndex;
             var entities = this.controller.levelEntity.entityMap;
             var isOtherEntityUnderTree = function (currentEntity, entities, currentTreeIndex) {
-                for (var value of entities) {
+                for (let value of entities) {
                     let entity = value[1];
                     const sameEntity = entity === currentEntity;
                     if (!sameEntity && entity.underTree.treeIndex === currentTreeIndex) {
@@ -219,7 +219,7 @@ class BaseEntity {
     }
 
     callBumpEvents(forwardPositionInformation) {
-        for (var i = 1; i < forwardPositionInformation.length; i++) {
+        for (let i = 1; i < forwardPositionInformation.length; i++) {
             if (forwardPositionInformation[i] === 'frontEntity') {
                 this.controller.events.forEach(e => e({ eventType: EventType.WhenTouched, targetType: forwardPositionInformation[i + 1].type, eventSenderIdentifier: this.identifier, targetIdentifier: forwardPositionInformation[i + 1].identifier }));
                 i++;

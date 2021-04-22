@@ -28,7 +28,7 @@ class Ghast extends BaseEntity {
         [[48, 59], [60, 71]], // right
         [[24, 35], [36, 47]], // up
         [[0, 11], [12, 23]]]; // left
-        for (var i = 0; i < 4; i++) {
+        for (let i = 0; i < 4; i++) {
             var facingName = this.controller.levelView.getDirectionName(i);
 
             // idle sequence
@@ -44,7 +44,7 @@ class Ghast extends BaseEntity {
               frameList.push(framesToOffset[k]);
             }
 
-            for (var j = 0; j < idleDelayFrame; j++) {
+            for (let j = 0; j < idleDelayFrame; j++) {
                 frameList.push(frameList[0]);
             }
             this.sprite.animations.add("idle" + facingName, frameList, frameRate, false).onComplete.add(() => {

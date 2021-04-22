@@ -41,7 +41,7 @@ class Squid extends BaseEntity {
       [40, 47], // right
       [0, 7], // down
       [17, 23]]; // left
-    for (var i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
       let facingName = this.controller.levelView.getDirectionName(i);
       let frameList = Phaser.Animation.generateFrameNames("Squid", frameListPerDirection[i][0], frameListPerDirection[i][1], ".png", 2);
       this.sprite.animations.add("idle"+facingName, frameList, frameRate, false).onComplete.add(() => {

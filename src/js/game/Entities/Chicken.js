@@ -23,12 +23,12 @@ class Chicken extends BaseEntity {
         [[148, 164], [114, 116], [113, 115], [174, 176], [165, 170], [180, 191], [192, 202], [203, 215], [216, 221], [452, 459], [129, 138]], // right
         [[37, 53], [3, 5], [12, 14], [63, 65], [54, 59], [69, 80], [81, 91], [92, 104], [105, 110], [444, 451], [18, 27]], // up
         [[370, 386], [336, 338], [335, 337], [396, 398], [387, 392], [402, 413], [414, 424], [425, 437], [438, 443], [468, 475], [351, 360]]]; // left
-        for (var i = 0; i < 4; i++) {
+        for (let i = 0; i < 4; i++) {
             var facingName = this.controller.levelView.getDirectionName(i);
 
             // idle sequence
             frameList = Phaser.Animation.generateFrameNames(frameName, frameListPerDirection[i][0][0], frameListPerDirection[i][0][1], ".png", 4);
-            for (var j = 0; j < idleDelayFrame; j++) {
+            for (let j = 0; j < idleDelayFrame; j++) {
                 frameList.push(stillFrameName[i]);
             }
             this.sprite.animations.add("idle" + facingName, frameList, frameRate, false).onComplete.add(() => {

@@ -13,7 +13,7 @@ class Zombie extends BaseEntity {
     }
 
     reset() {
-        for (var i = 0; i < 2; i++) {
+        for (let i = 0; i < 2; i++) {
             if (this.burningSprite[i]) {
                 this.burningSprite[i].destroy();
             }
@@ -28,7 +28,7 @@ class Zombie extends BaseEntity {
 
         setTimeout(() => {
             // tween for burning animation
-            for (var i = 0; i < 2; i++) {
+            for (let i = 0; i < 2; i++) {
                 const tween = this.controller.levelView.addResettableTween(this.burningSprite[i]).to({
                     x: (this.offset[0] + this.burningSpriteOffset[0] + 40 * position[0]), y: (this.offset[1] + this.burningSpriteOffset[1] + 40 * position[1])
                 }, 300, Phaser.Easing.Linear.None);
@@ -87,12 +87,12 @@ class Zombie extends BaseEntity {
         [[183, 189], [167, 169], [171, 173], [179, 181], [175, 177], [190, 198], [199, 201], [203, 211], [212, 220], [245, 252]], // right
         [[18, 24], [2, 4], [6, 8], [14, 16], [10, 12], [25, 33], [34, 36], [38, 46], [47, 55], [221, 228]], // up
         [[128, 134], [112, 114], [116, 118], [124, 126], [120, 122], [135, 143], [144, 146], [148, 156], [158, 165], [237, 244]]]; // left
-        for (var i = 0; i < 4; i++) {
+        for (let i = 0; i < 4; i++) {
             var facingName = this.controller.levelView.getDirectionName(i);
 
             // idle sequence
             frameList = Phaser.Animation.generateFrameNames(frameName, frameListPerDirection[i][0][0], frameListPerDirection[i][0][1], ".png", 3);
-            for (var j = 0; j < idleDelayFrame; j++) {
+            for (let j = 0; j < idleDelayFrame; j++) {
                 frameList.push(stillFrameName[i]);
             }
             this.sprite.animations.add("idle" + facingName, frameList, frameRate, false).onComplete.add(() => {
@@ -194,7 +194,7 @@ class Zombie extends BaseEntity {
                 });
 
                 tween.start();
-                for (var i = 0; i < 2; i++) {
+                for (let i = 0; i < 2; i++) {
                     tween = this.controller.levelView.addResettableTween(this.burningSprite[i]).to({
                         alpha: 0
                     }, 500, Phaser.Easing.Linear.None);

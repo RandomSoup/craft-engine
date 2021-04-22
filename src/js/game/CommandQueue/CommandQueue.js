@@ -50,7 +50,7 @@ class CommandQueue {
 
   endPushHighPriorityCommands() {
     // unshift highPriorityCommands to the command list
-    for (var i = this.highPriorityCommands.length - 1; i >= 0; i--) {
+    for (let i = this.highPriorityCommands.length - 1; i >= 0; i--) {
       this.commandList_.unshift(this.highPriorityCommands[i]);
     }
     this.setUnshiftState = false;
@@ -68,7 +68,7 @@ class CommandQueue {
           }
           // if there are repeat command for this queue, add them
           this.gameController.startPushRepeatCommand();
-          for (var i = 0; i < this.repeatCommands.length; i++) {
+          for (let i = 0; i < this.repeatCommands.length; i++) {
             if (this.repeatCommands[i][1] > 0) {
               this.repeatCommands[i][0]();
               this.repeatCommands[i][1]--;
@@ -144,7 +144,7 @@ class CommandQueue {
   addRepeatCommands(codeBlock, iteration) {
     // forever loop cancel existing forever loops
     if (iteration === -1) {
-      for (var i = 0; i < this.repeatCommands.length; i++) {
+      for (let i = 0; i < this.repeatCommands.length; i++) {
         if (this.repeatCommands[i][1] === -1) {
           this.repeatCommands.splice(i, 1);
           break;
