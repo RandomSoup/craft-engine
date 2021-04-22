@@ -2,13 +2,22 @@
 Fork of the original [craft](https://github.com/code-dot-org/craft) by [Code.org](https://code.org).
 
 ## Building
-To build craft-engine, do `make` in its directory.
+### Profiles
+`craft-engine` uses a custom build system, with two "profiles": `prod` and `dev`. The `prod` profile builds, minifies and stores the generated files under the `build` directory. On the other hand, `dev` works directly in memory, does not minify the files, and starts a server at `localhost:8000`.
 
-## Usage
-To start a simple server, do:
+### Dev dependencies
+The build system requires `node >= 10`, `npm`, and some additional packages. To install them, do:
 ```sh
-cd ./build/
-python3 -m http.server
+npm install
+```
+
+### Commands
+Finally, to build `craft-engine` itself, do:
+```sh
+# For the dev profile
+npm run build-dev
+# For the prod profile
+npm run build-prod
 ```
 
 ## Licensing

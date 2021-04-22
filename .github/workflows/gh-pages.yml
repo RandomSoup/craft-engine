@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build demo
-        run: make
+        run: npm run build-prod
 
       - name: Push to gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.1

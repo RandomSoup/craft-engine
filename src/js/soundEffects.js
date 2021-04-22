@@ -301,3 +301,5 @@ Sound.prototype.preloadViaWebAudio = function (filename, onPreloadedCallback) {
   };
   request.send();
 };
+
+window.Sounds = Sounds;

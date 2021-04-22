@@ -1509,3 +1509,5 @@ class GameController {
     this.levelView.updateShadingGroup(this.levelModel.shadingPlane);
   }
 }
+
+window.GameController = GameController;
