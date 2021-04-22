@@ -18,7 +18,6 @@ class SeaTurtle extends BaseEntity {
 			case FacingDirection.West:
 				return "Sea_Turtle15";
 			}
-
 		} else {
 			switch (this.facing) {
 			case FacingDirection.East:
@@ -45,7 +44,7 @@ class SeaTurtle extends BaseEntity {
 				[10, 13], // down
 				[15, 18]]; // left
 		}
-		for (var i = 0; i < 4; i++) {
+		for (let i = 0; i < 4; i++) {
 			let facingName = this.controller.levelView.getDirectionName(i);
 			let frameList = Phaser.Animation.generateFrameNames(frameBase, frameListPerDirection[i][0], frameListPerDirection[i][1], ".png", 2);
 			this.sprite.animations.add("idle"+facingName, frameList, frameRate, false).onComplete.add(() => {

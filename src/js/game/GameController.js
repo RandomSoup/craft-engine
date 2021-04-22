@@ -40,7 +40,7 @@ class GameController {
 			renderer: Phaser.AUTO,
 			parent: gameControllerConfig.containerId,
 			state: "earlyLoad",
-			// TODO(bjordan): remove now that using canvas?
+			// TODO(bjordan): remove now that using canvas 
 			preserveDrawingBuffer: true // enables saving .png screengrabs
 		});
 
@@ -206,7 +206,7 @@ class GameController {
 	run() {
 		// dispatch when spawn event at run
 		this.events.forEach(e => e({ eventType: EventType.WhenRun, targetIdentifier: undefined }));
-		for (var value of this.levelEntity.entityMap) {
+		for (let value of this.levelEntity.entityMap) {
 			var entity = value[1];
 			this.events.forEach(e => e({ eventType: EventType.WhenSpawned, targetType: entity.type, targetIdentifier: entity.identifier }));
 			entity.queue.begin();
@@ -324,7 +324,7 @@ class GameController {
 		this.commandRecord = new Map;
 		this.repeatCommandRecord = new Map;
 		this.isRepeat = false;
-		for (var i = 0; i < commandList.length; i++) {
+		for (let i = 0; i < commandList.length; i++) {
 			this.commandRecord.set(commandList[i], new Map);
 			this.commandRecord.get(commandList[i]).set("count", 0);
 			this.repeatCommandRecord.set(commandList[i], new Map);
@@ -419,7 +419,7 @@ class GameController {
 		// apply to all entities
 		if (target === undefined) {
 			var entities = this.levelEntity.entityMap;
-			for (var value of entities) {
+			for (let value of entities) {
 				let entity = value[1];
 				let callbackCommand = new CallbackCommand(this, () => { }, () => { this.moveAway(callbackCommand, moveAwayFrom); }, entity.identifier);
 				entity.addCommand(callbackCommand, commandQueueItem.repeat);
@@ -447,7 +447,7 @@ class GameController {
 				let targetEntities = this.getEntities(target);
 				let moveAwayFromEntity = this.getEntity(moveAwayFrom);
 				if (moveAwayFromEntity !== undefined) {
-					for (var i = 0; i < targetEntities.length; i++) {
+					for (let i = 0; i < targetEntities.length; i++) {
 						// not move if it's same entity
 						if (targetEntities[i].identifier === moveAwayFromEntity.identifier) {
 							continue;
@@ -521,7 +521,7 @@ class GameController {
 		// apply to all entities
 		if (target === undefined) {
 			let entities = this.levelEntity.entityMap;
-			for (var value of entities) {
+			for (let value of entities) {
 				let entity = value[1];
 				let callbackCommand = new CallbackCommand(this, () => { }, () => { this.moveToward(callbackCommand, moveTowardTo); }, entity.identifier);
 				entity.addCommand(callbackCommand, commandQueueItem.repeat);
@@ -891,7 +891,7 @@ class GameController {
 		let frontEntity = this.levelEntity.getEntityAt(frontPosition);
 		let frontBlock = this.levelModel.actionPlane.getBlockAt(frontPosition);
 
-		const isFrontBlockDoor = frontBlock === undefined ? false : frontBlock.blockType === "door";
+		const isFrontBlockDoor = !!frontBlock && frontBlock.blockType === "door";
 		if (player.movementState == -3) {
 			//player.movementState = -1;
 			this.destroyBlock(commandQueueItem);
@@ -1262,13 +1262,13 @@ class GameController {
 				var wasOnBlock = player.isOnBlock;
 				this.levelView.playDestroyTntAnimation(player.position, player.facing, player.isOnBlock, this.levelModel.getTnt(), this.levelModel.shadingPlane,
 					() => {
-						for (var i in tnt) {
+						for (let i in tnt) {
 							if (tnt[i].x === this.levelModel.player.position.x && tnt[i].y === this.levelModel.player.position.y) {
 								this.levelModel.player.isOnBlock = false;
 							}
 							var surroundingBlocks = this.levelModel.getAllBorderingPositionNotOfType(tnt[i], "tnt");
 							this.levelModel.destroyBlock(tnt[i]);
-							for (var b = 1; b < surroundingBlocks.length; ++b) {
+							for (let b = 1; b < surroundingBlocks.length; ++b) {
 								if (surroundingBlocks[b][0]) {
 									this.destroyBlockWithoutPlayerInteraction(surroundingBlocks[b][1]);
 								}

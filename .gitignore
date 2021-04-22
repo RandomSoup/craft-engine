@@ -3,3 +3,6 @@ build/
 
 # Node modules
 node_modules/
+
+# IDE Files
+.idea
