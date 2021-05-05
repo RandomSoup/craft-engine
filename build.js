@@ -108,16 +108,16 @@ function do_dev(src, levels)
 {
 	const app = express();
 
-	app.use("/", express.static(`${__dirname}/demo/`));
-	app.use("/js/", express.static(`${__dirname}/src/js/`));
-	app.use("/vendor/", express.static(`${__dirname}/src/vendor/`));
-	app.use("/assets/", express.static(`${__dirname}/src/assets/`));
 	app.get("/js/main.js", function (req, res) {
 		res.send(src);
 	});
 	app.get("/js/levels.js", function (req, res) {
 		res.send(levels);
 	});
+	app.use("/", express.static(`${__dirname}/demo/`));
+	app.use("/js/", express.static(`${__dirname}/src/js/`));
+	app.use("/vendor/", express.static(`${__dirname}/src/vendor/`));
+	app.use("/assets/", express.static(`${__dirname}/src/assets/`));
 	app.listen(port, function () {
 		console.log(`Server started on port ${port}`);
 	});

@@ -200,11 +200,11 @@ class LevelModel {
 	}
 
 	/**
-   * @param {string} entityType
-   * @param {Position|Number[]} position to check against as either a Position
-   *        instance or an array of the form [x, y]. Array-style position is
-   *        supported for compability with the verification API
-   */
+	 * @param {string} entityType
+	 * @param {Position|Number[]} position to check against as either a Position
+	 *        instance or an array of the form [x, y]. Array-style position is
+	 *        supported for compability with the verification API
+	 */
 	isEntityAt(entityType, position) {
 		if (Array.isArray(position)) {
 			position = Position.fromArray(position);
@@ -317,10 +317,10 @@ class LevelModel {
 	}
 
 	/**
-   * @param {Position|Number[]} position to check against as either a Position
-   *        instance or an array of the form [x, y]. Array-style position is
-   *        supported for compability with the verification API
-   */
+	 * @param {Position|Number[]} position to check against as either a Position
+	 *        instance or an array of the form [x, y]. Array-style position is
+	 *        supported for compability with the verification API
+	 */
 	isPlayerAt(position) {
 		if (!this.usePlayer) {
 			return false;
@@ -929,8 +929,8 @@ class LevelModel {
 	}
 
 	/**
-   * @return {Position[]}
-   */
+	 * @return {Position[]}
+	 */
 	getAllEmissives() {
 		var emissives = [];
 		for (let y = 0; y < this.planeHeight; ++y) {
@@ -952,8 +952,8 @@ class LevelModel {
 	}
 
 	/**
-   * @param {Position[]}
-   */
+	 * @param {Position[]}
+	 */
 	findBlocksAffectedByEmissives(emissives) {
 		var blocksTouchedByEmissives = {};
 		//find emissives that are close enough to light us.
@@ -1167,8 +1167,7 @@ class LevelModel {
 					// needs a bottom side AO shadow
 					this.shadingPlane.push({ x, y, atlas, type: "AOeffect_Bottom" });
 				} else if (y > 0) {
-					if (x < this.planeWidth - 1 && this.occludedBy(surrounding.northEast) &&
-            !this.occludedBy(surrounding.east)) {
+					if (x < this.planeWidth - 1 && this.occludedBy(surrounding.northEast) && !this.occludedBy(surrounding.east)) {
 						// needs a bottom left side AO shadow
 						this.shadingPlane.push({ x, y, atlas, type: "AOeffect_BottomLeft" });
 					}
@@ -1183,8 +1182,7 @@ class LevelModel {
 					// needs a top side AO shadow
 					this.shadingPlane.push({ x, y, atlas, type: "AOeffect_Top" });
 				} else if (y < this.planeHeight - 1) {
-					if (x < this.planeWidth - 1 && this.occludedBy(surrounding.southEast) &&
-            !this.occludedBy(surrounding.east)) {
+					if (x < this.planeWidth - 1 && this.occludedBy(surrounding.southEast) && !this.occludedBy(surrounding.east)) {
 						// needs a bottom left side AO shadow
 						this.shadingPlane.push({ x, y, atlas, type: "AOeffect_TopLeft" });
 					}

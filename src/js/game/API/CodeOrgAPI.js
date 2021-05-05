@@ -1,8 +1,8 @@
 function getCodeOrgAPI(controller) {
 	return {
 		/**
-     * Called before a list of user commands will be issued.
-     */
+		 * Called before a list of user commands will be issued.
+		 */
 		startCommandCollection: function () {
 			if (controller.DEBUG) {
 				console.log("Collecting commands.");
@@ -10,16 +10,16 @@ function getCodeOrgAPI(controller) {
 		},
 
 		/**
-     * Called when an attempt should be started, and the entire set of
-     * command-queue API calls have been issued.
-     *
-     * @param {Function} onAttemptComplete - callback with two parameters,
-     * "success", i.e., true if attempt was successful (level completed),
-     * false if unsuccessful (level not completed), and the current level model.
-     * @return {Promise.<boolean>} a promise for a success value when
-     *   attempt is complete.
-     */
-		startAttempt: function (onAttemptComplete) {
+		 * Called when an attempt should be started, and the entire set of
+		 * command-queue API calls have been issued.
+		 *
+		 * @param {Function} onAttemptComplete - callback with two parameters,
+		 * "success", i.e., true if attempt was successful (level completed),
+		 * false if unsuccessful (level not completed), and the current level model.
+		 * @return {Promise.<boolean>} a promise for a success value when
+		 *   attempt is complete.
+		 */
+		startAttempt: function (onAttemptComplete, onError, apiObject) {
 			return new Promise(resolve => {
 				controller.OnCompleteCallback = (...args) => {
 					// Note: onAttemptComplete is unused in this repo, but it's
@@ -30,7 +30,7 @@ function getCodeOrgAPI(controller) {
 				controller.initiateDayNightCycle(controller.dayNightCycle, controller.dayNightCycle, "day");
 				controller.setPlayerActionDelayByQueueLength();
 				controller.queue.begin();
-				controller.run();
+				controller.run(onError, apiObject || this);
 				controller.attemptRunning = true;
 				controller.resultReported = false;
 			});
@@ -44,20 +44,20 @@ function getCodeOrgAPI(controller) {
 		},
 
 		/**
-     * @param highlightCallback
-     * @param codeBlockCallback - for example:
-     *  (e) => {
-     *    if (e.type !== 'blockDestroyed') {
-     *      return;
-     *    }
-     *
-     *    if (e.blockType !== '[dropdown value, e.g. logOak') {
-     *      return;
-     *    }
-     *
-     *    evalUserCode(e.block);
-     *  }
-     */
+		 * @param highlightCallback
+		 * @param codeBlockCallback - for example:
+		 *  (e) => {
+		 *    if (e.type !== 'blockDestroyed') {
+		 *      return;
+		 *    }
+		 *
+		 *    if (e.blockType !== '[dropdown value, e.g. logOak') {
+		 *      return;
+		 *    }
+		 *
+		 *    evalUserCode(e.block);
+		 *  }
+		 */
 		registerEventCallback(highlightCallback, codeBlockCallback) {
 			controller.events.push(codeBlockCallback);
 		},

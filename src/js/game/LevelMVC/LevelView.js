@@ -13,7 +13,7 @@ class LevelView {
 		this.baseShading = null;
 		this.prismarinePhase = 0;
 
-		this.uniforms = {
+			this.uniforms = {
 			time: {type: "1f", value: 0},
 			surface: {type: "sampler2D", value: null},
 			tint: {type: "4fv", value: [67 / 255, 213 / 255, 238 / 255, 1]},
@@ -21,37 +21,37 @@ class LevelView {
 			y: {type: "1f", value: 0},
 		};
 		this.waveShader = new Phaser.Filter(this.game, this.uniforms, [`
-      precision lowp float;
-      varying vec2 vTextureCoord;
-      uniform sampler2D uSampler;
-      uniform sampler2D surface;
-      uniform float time;
-      uniform float x;
-      uniform float y;
-      uniform vec4 tint;
+			precision lowp float;
+			varying vec2 vTextureCoord;
+			uniform sampler2D uSampler;
+			uniform sampler2D surface;
+			uniform float time;
+			uniform float x;
+			uniform float y;
+			uniform vec4 tint;
 
-      float overlay(float source, float dest) {
-        return dest > 0.5 ? (2.0 * dest * source) : (1.0 - 2.0 * (1.0 - dest) * (1.0 - source));
-      }
+			float overlay(float source, float dest) {
+			  return dest > 0.5 ? (2.0 * dest * source) : (1.0 - 2.0 * (1.0 - dest) * (1.0 - source));
+			}
 
-      vec4 overlay(vec4 source, vec4 dest) {
-        return vec4(overlay(source.r, dest.r), overlay(source.g, dest.g), overlay(source.b, dest.b), 1.0);
-      }
+			vec4 overlay(vec4 source, vec4 dest) {
+			  return vec4(overlay(source.r, dest.r), overlay(source.g, dest.g), overlay(source.b, dest.b), 1.0);
+			}
 
-      void main(void) {
-        vec2 relativeCoord = vTextureCoord + vec2(x * 0.9, -y * 0.9);
-        float offsetA = sin(relativeCoord.y * 31.0 + time / 18.0) * 0.0014;
-        float offsetB = sin(relativeCoord.y * 57.0 + time / 18.0) * 0.0007;
-        vec4 base = texture2D(uSampler, vTextureCoord + vec2(0.0, offsetA + offsetB));
-        float frame = mod(floor(time / 5.0), 31.0);
-        float surfaceOffset = 0.0; //sin(time / 57.0) * 0.01 + sin(time / 31.0) * 0.005;
-        vec4 surface = texture2D(
-          surface,
-          vec2(mod(relativeCoord.x * 2.0, 1.0),
-          mod((-relativeCoord.y * 2.0 + frame + surfaceOffset) / 32.0, 1.0))
-        );
-        gl_FragColor = mix(mix(overlay(base, surface), base, 0.5), tint, 0.3);
-      }
+			void main(void) {
+			  vec2 relativeCoord = vTextureCoord + vec2(x * 0.9, -y * 0.9);
+			  float offsetA = sin(relativeCoord.y * 31.0 + time / 18.0) * 0.0014;
+			  float offsetB = sin(relativeCoord.y * 57.0 + time / 18.0) * 0.0007;
+			  vec4 base = texture2D(uSampler, vTextureCoord + vec2(0.0, offsetA + offsetB));
+			  float frame = mod(floor(time / 5.0), 31.0);
+			  float surfaceOffset = 0.0; //sin(time / 57.0) * 0.01 + sin(time / 31.0) * 0.005;
+			  vec4 surface = texture2D(
+			    surface,
+			    vec2(mod(relativeCoord.x * 2.0, 1.0),
+			    mod((-relativeCoord.y * 2.0 + frame + surfaceOffset) / 32.0, 1.0))
+			  );
+			  gl_FragColor = mix(mix(overlay(base, surface), base, 0.5), tint, 0.3);
+			}
     `]);
 
 		this.player = null;
@@ -1091,10 +1091,10 @@ class LevelView {
 		}
 		const oreString = groundType.substring(0, 3);
 		if (groundType === "stone" || groundType === "cobblestone" || groundType === "bedrock" ||
-      oreString === "ore" || groundType === "bricks") {
+			oreString === "ore" || groundType === "bricks") {
 			this.audioPlayer.play("stepStone");
 		} else if (groundType === "grass" || groundType === "dirt" || groundType === "dirtCoarse" ||
-      groundType === "wool_orange" || groundType === "wool") {
+			groundType === "wool_orange" || groundType === "wool") {
 			this.audioPlayer.play("stepGrass");
 		} else if (groundType === "gravel") {
 			this.audioPlayer.play("stepGravel");
@@ -1601,7 +1601,7 @@ class LevelView {
 			if (sprite.alive && caughtUpToPlayer) {
 				this.audioPlayer.play("collectedBlock");
 				this.player.inventory[blockType] =
-          (this.player.inventory[blockType] || 0) + 1;
+			    (this.player.inventory[blockType] || 0) + 1;
 				sprite.kill();
 				this.toDestroy.push(sprite);
 				const event = createEvent("craftCollectibleCollected");
@@ -1793,12 +1793,12 @@ class LevelView {
 				// we don't want to refresh doors or conduits. They're not destroyable / placeable, and
 				// refreshing will lead to bad animation states
 				if (newBlock && newBlock.getIsDoor()
-        || newBlock && (newBlock.getIsConduit() && newBlock.isActivatedConduit)) {
+			  || newBlock && (newBlock.getIsConduit() && newBlock.isActivatedConduit)) {
 					return;
 				}
 
 				if ((newBlock && newBlock.getIsMiniblock())
-        || newBlock && newBlock.getIsTree()) {
+			  || newBlock && newBlock.getIsTree()) {
 					return;
 				}
 
@@ -2114,18 +2114,18 @@ class LevelView {
 	}
 
 	/**
-   * Create a "miniblock" asset (representing a floating collectable) based on
-   * the given block at the given coordinates
-   *
-   * @param {Number} x
-   * @param {Number} y
-   * @param {String} blockType
-   * @param {Object} [overrides] optional overrides for various defaults
-   * @param {Number} [overrides.collectibleDistance=2] distance at which the
-   *        miniblock can be collected
-   * @param {Number} [overrides.xOffsetRange=40]
-   * @param {Number} [overrides.yOffsetRange=40]
-   */
+	 * Create a "miniblock" asset (representing a floating collectable) based on
+	 * the given block at the given coordinates
+	 *
+	 * @param {Number} x
+	 * @param {Number} y
+	 * @param {String} blockType
+	 * @param {Object} [overrides] optional overrides for various defaults
+	 * @param {Number} [overrides.collectibleDistance=2] distance at which the
+	 *			  miniblock can be collected
+	 * @param {Number} [overrides.xOffsetRange=40]
+	 * @param {Number} [overrides.yOffsetRange=40]
+	 */
 	createMiniBlock(x, y, blockType, overrides = {}) {
 		function valueOr(value, defaultValue) {
 			if (value === undefined) {
@@ -2673,8 +2673,8 @@ class LevelView {
 	}
 
 	/**
-  * Animate Door and set the status
-  */
+	 * Animate Door and set the status
+	 */
 	animateDoor(index, open) {
 		let player = this.controller.levelModel.player;
 		this.setSelectionIndicatorPosition(this.controller.levelModel.actionPlane.indexToCoordinates(index)[0], this.controller.levelModel.actionPlane.indexToCoordinates(index)[1]);
@@ -2691,5 +2691,4 @@ class LevelView {
 			this.setSelectionIndicatorPosition(player.position[0], player.position[1]);
 		});
 	}
-
 }

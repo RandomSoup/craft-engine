@@ -6,11 +6,11 @@ var GAME_HEIGHT = 400;
  */
 class GameController {
 	/**
-   * @param {Object} gameControllerConfig
-   * @param {String} gameControllerConfig.containerId DOM ID to mount this app
-   * @param {Phaser} gameControllerConfig.Phaser Phaser package
-   * @constructor
-   */
+	 * @param {Object} gameControllerConfig
+	 * @param {String} gameControllerConfig.containerId DOM ID to mount this app
+	 * @param {Phaser} gameControllerConfig.Phaser Phaser package
+	 * @constructor
+	 */
 	constructor(gameControllerConfig) {
 		this.DEBUG = gameControllerConfig.debug;
 
@@ -22,17 +22,17 @@ class GameController {
 		};
 
 		/**
-     * @public {Object} codeOrgAPI - API with externally-callable methods for
-     * starting an attempt, issuing commands, etc.
-     */
+		 * @public {Object} codeOrgAPI - API with externally-callable methods for
+		 * starting an attempt, issuing commands, etc.
+		 */
 		this.codeOrgAPI = getCodeOrgAPI(this);
 
 		var Phaser = gameControllerConfig.Phaser;
 
 		/**
-     * Main Phaser game instance.
-     * @property {Phaser.Game}
-     */
+		 * Main Phaser game instance.
+		 * @property {Phaser.Game}
+		 */
 		this.game = new Phaser.Game({
 			forceSetTimeOut: gameControllerConfig.forceSetTimeOut,
 			width: GAME_WIDTH,
@@ -41,7 +41,7 @@ class GameController {
 			parent: gameControllerConfig.containerId,
 			state: "earlyLoad",
 			// TODO(bjordan): remove now that using canvas 
-			preserveDrawingBuffer: true // enables saving .png screengrabs
+			preserveDrawingBuffer: false // enables saving .png screengrabs
 		});
 
 		this.specialLevelType = null;
@@ -53,10 +53,8 @@ class GameController {
 		this.audioPlayer = gameControllerConfig.audioPlayer;
 		this.afterAssetsLoaded = gameControllerConfig.afterAssetsLoaded;
 		this.assetLoader = new AssetLoader(this);
-		this.earlyLoadAssetPacks =
-      gameControllerConfig.earlyLoadAssetPacks || [];
-		this.earlyLoadNiceToHaveAssetPacks =
-      gameControllerConfig.earlyLoadNiceToHaveAssetPacks || [];
+		this.earlyLoadAssetPacks = gameControllerConfig.earlyLoadAssetPacks || [];
+		this.earlyLoadNiceToHaveAssetPacks = gameControllerConfig.earlyLoadNiceToHaveAssetPacks || [];
 
 		this.resettableTimers = [];
 		this.timeouts = [];
@@ -104,18 +102,18 @@ class GameController {
 	}
 
 	/**
-   * Is this one of those level types in which the player is controlled by arrow
-   * keys rather than by blocks?
-   *
-   * @return {boolean}
-   */
+	 * Is this one of those level types in which the player is controlled by arrow
+	 * keys rather than by blocks?
+	 *
+	 * @return {boolean}
+	 */
 	getIsDirectPlayerControl() {
 		return this.levelData.isEventLevel || this.levelData.isAgentLevel;
 	}
 
 	/**
-   * @param {Object} levelConfig
-   */
+	 * @param {Object} levelConfig
+	 */
 	loadLevel(levelConfig) {
 		this.levelData = Object.freeze(levelConfig);
 
@@ -203,7 +201,13 @@ class GameController {
 		this.game.load.start();
 	}
 
-	run() {
+	run(onErrorCallback, apiObject) {
+		/* Execute user/designer's code */
+		try {
+			new Function('api', `'use strict'; ${this.levelData.script}`)(apiObject);
+		} catch (err) {
+			onErrorCallback(err);
+		}
 		// dispatch when spawn event at run
 		this.events.forEach(e => e({ eventType: EventType.WhenRun, targetIdentifier: undefined }));
 		for (let value of this.levelEntity.entityMap) {
@@ -212,7 +216,7 @@ class GameController {
 			entity.queue.begin();
 		}
 		// set timeout for timeout
-		const isNumber = !isNaN(this.timeout);
+		const isNumber = !Number.isNaN(this.timeout);
 		if (isNumber && this.timeout > 0) {
 			this.timerSprite = this.game.add.sprite(-50, 390, "timer");
 			var tween = this.levelView.addResettableTween(this.timerSprite).to({
@@ -409,11 +413,11 @@ class GameController {
 	}
 
 	/**
-   * @param {any} commandQueueItem
-   * @param {any} moveAwayFrom (entity identifier)
-   *
-   * @memberOf GameController
-   */
+	 * @param {any} commandQueueItem
+	 * @param {any} moveAwayFrom (entity identifier)
+	 *
+	 * @memberOf GameController
+	 */
 	moveAway(commandQueueItem, moveAwayFrom) {
 		var target = commandQueueItem.target;
 		// apply to all entities
@@ -511,11 +515,11 @@ class GameController {
 
 
 	/**
-   * @param {any} commandQueueItem
-   * @param {any} moveTowardTo (entity identifier)
-   *
-   * @memberOf GameController
-   */
+	 * @param {any} commandQueueItem
+	 * @param {any} moveTowardTo (entity identifier)
+	 *
+	 * @memberOf GameController
+	 */
 	moveToward(commandQueueItem, moveTowardTo) {
 		var target = commandQueueItem.target;
 		// apply to all entities
@@ -613,13 +617,13 @@ class GameController {
 	}
 
 	/**
-   * Run a command. If no `commandQueueItem.target` is provided, the command
-   * will be applied to all targets.
-   *
-   * @param commandQueueItem
-   * @param command
-   * @param commandArgs
-   */
+	 * Run a command. If no `commandQueueItem.target` is provided, the command
+	 * will be applied to all targets.
+	 *
+	 * @param commandQueueItem
+	 * @param command
+	 * @param commandArgs
+	 */
 	execute(commandQueueItem, command, ...commandArgs) {
 		let target = commandQueueItem.target;
 		if (!this.isType(target)) {
