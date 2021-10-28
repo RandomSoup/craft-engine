@@ -21,7 +21,7 @@ npm run build-prod
 ```
 
 ## Licensing
-This project is licensed under an Apache 2.0 license. See the [LICENSE](https://github.com/craft-devs/craft-engine/blob/master/LICENSE) and [NOTICE](https://github.com/craft-devs/craft-engine/blob/master/NOTICE) files for more information.
+This project is licensed under an Apache 2.0 license. See the [LICENSE](https://github.com/RandomSoup/craft-engine/blob/master/LICENSE) and [NOTICE](https://github.com/RandomSoup/craft-engine/blob/master/NOTICE) files for more information.
 
 ### Third-party licenses
-Both Phaser.js and CodeMirror are licensed under a MIT license. Please see the [third-party-licenses](https://github.com/craft-devs/craft-engine/blob/master/third-party-licenses.txt) file.
+Both Phaser.js and CodeMirror are licensed under a MIT license. Please see the [third-party-licenses](https://github.com/RandomSoup/craft-engine/blob/master/third-party-licenses.txt) file.
