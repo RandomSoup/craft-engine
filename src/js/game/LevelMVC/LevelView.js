@@ -2549,6 +2549,10 @@ class LevelView {
 			break;
 
 		default:
+			if (blockType.startsWith('pressurePlate')) {
+				plane = this.groundPlane;
+				y -= 0.5;
+			}
 			if (!this.blocks[blockType]) {
 				throw new Error(`Unknown block type: ${blockType}`);
 			}
