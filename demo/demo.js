@@ -18,16 +18,17 @@ var defaultScript = `/*
  * Welcome to the craft-engine editor!
  * 
  * Some tips to get started:
- *  + All the methods you need to solve the puzzles are in the ${"`api`"} object.
+ *  + All the methods you need to solve the puzzles are in the ${"`api`"} object. All API calls are documented at https://randomsoup.github.io/craft-docs/CodeOrgAPI.html.
  *  + You can use ${"`api.log`"}, ${"`api.error`"} and ${"`api.warning`"} to log info, errors, and warnings
  *    in the console below.
+ *  + When run, the example code below will spawn a cow at (4, 4), and also spawn a creeper at a random position
  *  + More tips coming soon with proper documentation :)
  * 
  */
 
-api.log("Hi!");
+api.log("Hello world!");
 
-// Spawns a Cow in the at (4,4) facing south
+// Spawns a cow at (4, 4) facing south
 api.spawnEntity(null, "cow", {
 	"x": 4,
 	"y": 4,
