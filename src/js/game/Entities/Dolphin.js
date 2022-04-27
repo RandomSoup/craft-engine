@@ -29,7 +29,7 @@ class Dolphin extends BaseEntity {
 	}
 	prepareSprite() {
 		let frameRate = 12;
-		console.log(this.controller.levelModel.isUnderwater());
+		api.log(this.controller.levelModel.isUnderwater());
 		const frame = this.getFrameForDirection();
 		const actionGroup = this.controller.levelView.actionGroup;
 		this.sprite = actionGroup.create(0, 0, "dolphin", frame+".png");

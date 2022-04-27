@@ -71,7 +71,7 @@ class CodeOrgAPI {
 	 */
 	startCommandCollection() {
 		if (this.controller.DEBUG) {
-			console.log("Collecting commands.");
+			api.log("Collecting commands.");
 		}
 	}
 

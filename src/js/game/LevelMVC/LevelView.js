@@ -1579,7 +1579,7 @@ class LevelView {
 	playScaledSpeed(animationManager, name, factor = 1) {
 		var animation = animationManager.getAnimation(name);
 		if (animation === null) {
-			console.log("can't find animation name : " + name);
+			api.log("can't find animation name : " + name);
 		} else {
 			if (!animation.originalFps) {
 				animation.originalFps = 1000 / animation.delay;

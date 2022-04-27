@@ -12,7 +12,7 @@ class TurnCommand extends BaseCommand {
 	begin() {
 		super.begin();
 		if (this.GameController.DEBUG) {
-			console.log(`TURN command: BEGIN turning ${this.Direction}  `);
+			api.log(`TURN command: BEGIN turning ${this.Direction}  `);
 		}
 		this.GameController.turn(this, this.Direction);
 	}

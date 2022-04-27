@@ -100,7 +100,7 @@ class LevelEntity {
 
 			}
 			if (this.controller.DEBUG) {
-				console.log("Create Entity type : " + type + " " + x + "," + y);
+				api.log("Create Entity type : " + type + " " + x + "," + y);
 			}
 			this.entityMap.set(identifier, entity);
 		} else if (this.controller.DEBUG) {

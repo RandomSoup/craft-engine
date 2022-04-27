@@ -26,7 +26,7 @@ class IfBlockAheadCommand extends BaseCommand {
 	begin() {
 		super.begin();
 		if (this.GameController.DEBUG) {
-			console.log("WHILE command: BEGIN");
+			api.log("WHILE command: BEGIN");
 		}
 
 		// setup the "if" check

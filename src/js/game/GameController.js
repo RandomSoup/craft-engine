@@ -360,7 +360,7 @@ class GameController {
 			}
 			if (this.DEBUG) {
 				const msgHeader = repeat ? "Repeat " : "" + "Command :";
-				console.log(msgHeader + commandName + " executed in mob type : " + targetType + " updated count : " + commandMap.get(targetType));
+				api.log(msgHeader + commandName + " executed in mob type : " + targetType + " updated count : " + commandMap.get(targetType));
 			}
 		}
 	}
@@ -393,7 +393,7 @@ class GameController {
 		}
 		let entity = this.levelEntity.entityMap.get(target);
 		if (entity === undefined) {
-			console.log("Debug GetEntity: there is no entity : " + target + "\n");
+			api.log("Debug GetEntity: there is no entity : " + target + "\n");
 		}
 		return entity;
 	}
